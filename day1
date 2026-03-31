@@ -1,0 +1,65 @@
+SELECT * FROM employee ORDER BY ID;
+
+SELECT * FROM employee;
+
+SELECT * FROM employee ORDER BY id;
+
+
+SELECT * FROM employee
+where id > 22 and name='ramesh';
+
+SELECT * FROM employee
+WHERE name LIKE 'r%';
+
+SELECT * FROM employee ORDER BY id;
+
+SELECT COUNT(*) FROM employee;
+
+SELECT MAX(id) FROM employee;
+
+SELECT AVG(id) FROM employee;
+
+
+SELECT * FROM employee;
+
+
+SELECT name, COUNT(*)
+FROM employee
+GROUP BY name;
+
+INSERT INTO employee
+VALUES(25,'UMESH',33,'UMESH@123');
+
+SELECT * FROM employee;
+
+UPDATE employee
+SET age=25
+WHERE id=25;
+
+
+SELECT id , COUNT(*)
+FROM employee
+GROUP BY id;
+
+SELECT * FROM employee
+
+
+ALTER TABLE employee
+ADD COLUMN department VARCHAR(50);
+
+
+SELECT * FROM employee
+
+
+ALTER TABLE employee
+ADD COLUMN department VARCHAR(50) NOT NULL DEFAULT 'IT';
+
+SELECT * FROM employee
+
+
+ALTER TABLE employee
+ADD COLUMN department VARCHAR(50) NOT NULL DEFAULT 'IT';
+
+UPDATE employee
+set department='IT'
+WHERE id=25;
