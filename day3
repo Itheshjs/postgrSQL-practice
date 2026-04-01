@@ -1,0 +1,169 @@
+CREATE TABLE employe(
+emp_id SERIAL PRIMARY KEY,
+fname VARCHAR(50) NOT NULL,
+lname VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL UNIQUE,
+dept VARCHAR(50),
+salary DECIMAL(10,2) DEFAULT 30000.00,
+hire_date DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+
+
+
+SELECT * FROM employe
+
+
+INSERT INTO employe(emp_id,fname,lname,email,dept,salary,hire_date)
+VALUES
+(1, 'Raj', 'Sharma', 'raj.sharma@example.com', 'IT', 50000.00, '2020-01-15'),
+(2, 'Priya', 'Singh', 'priya.singh@example.com', 'HR', 45000.00, '2019-03-22'),
+(3, 'Arjun', 'Verma', 'arjun.verma@example.com', 'IT', 55000.00, '2021-06-01'),
+(4, 'Suman', 'Patel', 'suman.patel@example.com', 'Finance', 60000.00, '2018-07-30'),
+(5, 'Kavita', 'Rao', 'kavita.rao@example.com', 'HR', 47000.00, '2020-11-10'),
+(6, 'Amit', 'Gupta', 'amit.gupta@example.com', 'Marketing', 52000.00, '2020-09-25'),
+(7, 'Neha', 'Desai', 'neha.desai@example.com', 'IT', 48000.00, '2019-05-18'),
+(8, 'Rahul', 'Kumar', 'rahul.kumar@example.com', 'IT', 53000.00, '2021-02-14'),
+(9, 'Anjali', 'Mehta', 'anjali.mehta@example.com', 'Finance', 61000.00, '2018-12-03'),
+(10, 'Vijay', 'Nair', 'vijay.nair@example.com', 'Marketing', 50000.00, '2020-04-19');
+
+
+SELECT setval('employe_emp_id_seq',1);
+
+SELECT currval('employe_emp_id_seq');
+
+SELECT * FROM employe
+WHERE emp_id=5 
+
+
+SELECT * FROM employe
+WHERE dept='HR';
+
+
+
+SELECT * FROM employe
+WHERE salary >=50000;
+
+
+SELECT * FROM employe
+WHERE dept='IT' or  dept='HR';
+
+
+SELECT * FROM employe
+WHERE dept='IT' and salary>=50000;
+
+
+SELECT * FROM employe
+WHERE dept IN('IT','HR','Finance');
+
+
+SELECT * FROM employe
+WHERE dept NOT IN ('IT','HR','Finance');
+
+
+SELECT * FROM employe
+WHERE salary BETWEEN 40000 AND 60000;
+
+SELECT DISTINCT dept FROM employe;
+
+
+SELECT * FROM employe
+
+
+SELECT DISTINCT salary FROM employe
+
+
+SELECT * FROM employe ORDER BY emp_id DESC;
+
+
+
+SELECT * FROM employe ORDER BY emp_id;
+
+
+SELECT * FROM employe LIMIT 4;
+
+
+SELECT * FROM employe WHERE email LIKE 'a%';
+
+SELECT * FROM employe WHERE fname LIKE '%a';
+
+
+SELECT * FROM employe WHERE dept  LIKE '__';
+
+SELECT * FROM employe WHERE fname LIKE '_a%';
+
+
+SELECT * FROM employe
+
+
+
+SELECT COUNT(fname) FROM employe;
+
+SELECT SUM(salary) FROM employe;
+
+SELECT AVG(salary) FROM employe;
+
+SELECT MIN(salary) FROM  employe;
+
+SELECT MAX(salary) FROM  employe;
+
+SELECT * FROM employe
+
+SELECT dept,COUNT(emp_id) FROM employe GROUP BY dept;
+
+SELECT dept,COUNT(emp_id) FROM employe GROUP BY dept;
+
+SELECT dept,sum(salary) FROM employe GROUP BY dept;
+
+
+
+SELECT CONCAT('hello','word');
+
+
+
+SELECT * FROM employe;
+
+SELECT emp_id, CONCAT(fname,'  ',lname) as FullName ,dept from employe;
+
+SELECT emp_id, CONCAT_WS(' ',fname,lname) as FullName,dept FROM employe;
+
+SELECT SUBSTR('Hello my dear buddy',1,14);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
