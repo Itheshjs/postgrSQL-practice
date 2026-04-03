@@ -1,0 +1,213 @@
+SELECT * FROM employee
+
+
+CREATE TABLE employe1(
+emp_id SERIAL PRIMARY KEY,
+fname VARCHAR(50) NOT NULL,
+lname VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL UNIQUE,
+dept VARCHAR(50),
+salary DECIMAL(10,2) DEFAULT 30000.00,
+hire_date DATE NOT NULL DEFAULT CURRENT_DATE
+
+
+
+
+INSERT INTO employe1(emp_id,fname,lname,email,dept,salary,hire_date)
+VALUES
+(1, 'Raj', 'Sharma', 'raj.sharma@example.com', 'IT', 50000.00, '2020-01-15'),
+(2, 'Priya', 'Singh', 'priya.singh@example.com', 'HR', 45000.00, '2019-03-22'),
+(3, 'Arjun', 'Verma', 'arjun.verma@example.com', 'IT', 55000.00, '2021-06-01'),
+(4, 'Suman', 'Patel', 'suman.patel@example.com', 'Finance', 60000.00, '2018-07-30'),
+(5, 'Kavita', 'Rao', 'kavita.rao@example.com', 'HR', 47000.00, '2020-11-10'),
+(6, 'Amit', 'Gupta', 'amit.gupta@example.com', 'Marketing', 52000.00, '2020-09-25'),
+(7, 'Neha', 'Desai', 'neha.desai@example.com', 'IT', 48000.00, '2019-05-18'),
+(8, 'Rahul', 'Kumar', 'rahul.kumar@example.com', 'IT', 53000.00, '2021-02-14'),
+(9, 'Anjali', 'Mehta', 'anjali.mehta@example.com', 'Finance', 61000.00, '2018-12-03'),
+(10, 'Vijay', 'Nair', 'vijay.nair@example.com', 'Marketing', 50000.00, '2020-04-19');
+
+
+SELECT * FROM employe1
+
+
+ALTER TABLE employe1
+RENAME COLUMN fname TO ftname
+
+ALTER TABLE employe1
+RENAME COLUMN ftname TO fname;
+
+
+SELECT * FROM employe1
+
+
+ALTER TABLE employe1
+RENAME TO emp;
+
+SELECT * FROM emp
+
+
+ALTER TABLE emp
+ALTER COLUMN  fname
+SET DATA TYPE VARCHAR(200);
+
+
+
+ALTER TABLE emp
+ALTER COLUMN lname
+SET DATA TYPE VARCHAR(200);
+
+
+SELECT * FROM emp;
+
+
+ALTER TABLE emp 
+ALTER COLUMN fname
+SET NOT NULL;
+
+
+SELECT * FROM emp
+
+#we want to make sure phone number is atleast 10digit
+
+
+CREATE TABLE contacts(
+name VARCHAR(50),
+mob VARCHAR(50) UNIQUE CHECK(LENGTH(mob)>=10)
+);
+
+SELECT * FROM contacts
+
+
+
+CREATE TABLE contact1(
+name VARCHAR(50),
+mob VARCHAR(15) UNIQUE CHECK (LENGTH(mob)>=10)
+);
+
+SELECT * FROM contact1
+
+INSERT INTO contact1(name,mob)
+VALUES
+('anil',2323443433),
+('shank',1212334345);
+
+
+CREATE TABLE contact3(
+name VARCHAR(50),
+mob VARCHAR(15) UNIQUE CHECK(LENGTH(mob)>=10)
+);
+
+SELECT * FROM contact3
+
+ALTER TABLE contact3
+DROP CONSTRAINT contact3_mob_check;
+
+INSERT INTO contact3(name,mob)
+VALUES('ITHESH',123);
+
+
+SELECT * FROM emp
+
+
+SELECT fname,salary,
+CASE
+WHEN salary>=50000 THEN 'HIGH'
+ELSE 'LOW'
+END AS sale_catogories
+FROM
+emp;
+
+
+SELECT * FROM emp
+
+
+SELECT 
+CASE
+WHEN salary>=50000 THEN 'HIGH' 
+WHEN salary BETWEEN 47000 AND 48000
+THEN 'MID' 
+ELSE 'LOW' 
+END AS sal_cat, COUNT(emp_id)
+FROM
+emp
+GROUP BY sal_cat
+
+SELECT fname,salary,
+CASE
+WHEN salary//10 THEN 
+END AS bonus
+FROM 
+emp
+
+
+SELECT fname,salary,
+CASE
+WHEN salary>0 THEN ROUND(salary*.10)
+END AS bonus
+FROM
+emp
+
+
+SELECT * FROM emp
+
+
+SELECT * FROM emp
+
+
+SELECT 
+CASE
+WHEN salary>=50000 	THEN 'HIGH'
+WHEN salary BETWEEN 47000 AND 48000 THEN 'MID'
+ELSE 'LOW'
+END AS sal_cat,COUNT(emp_id)
+FROM
+emp
+GROUP BY(sal_cat)
+
+SELECT
+CASE
+WHEN salary>50000 THEN 'HIGH'
+WHEN salary BETWEEN 47000 AND 48000 THEN 'MID'
+ELSE 'LOW'
+END AS sec_emp, COUNT(emp_id)
+FROM
+emp
+GROUP BY(sec_emp)
+
+
+
+
+CREATE TABLE customers(
+cust_id SERIAL PRIMARY KEY,
+cust_name VARCHAR(50)
+);
+
+CREATE TABLE orders(
+ord_id SERIAL PRIMARY KEY,
+ord_date DATE NOT NULL,
+price NUMERIC NOT NULL,
+cust_id INTEGER NOT NULL,
+FOREIGN KEY(cust_id) REFERENCES
+customers(cust_id)
+);
+
+
+INSERT INTO customers(cust_name)
+VALUES
+('Raju'),('sham'),('paul'),('Alex');
+
+
+SELECT * FROM customers
+
+
+
+INSERT INTO orders(ord_date,cust_id,price)
+VALUES
+('2024-01-01',1,250.00),
+('2024-01-15',1,300.00),
+('2024-02-01',2,150.00),
+('2024-03-01',3,450.00),
+('2024-02-01',2,550.00);
+
+SELECT * FROM orders
+
