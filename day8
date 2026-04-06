@@ -1,0 +1,101 @@
+SELECT * FROM emp
+
+
+SELECT fname,salary,
+CASE
+   WHEN salary>=50000 THEN 'High'
+   ELSE 'Low'
+END AS sal_cat
+FROM emp
+
+
+
+SELECT * FROM emp
+
+
+
+SELECT fname,lname,
+CASE
+WHEN fname IN('Priya','Kavitha','Neha','Anjali') THEN 'Girl'
+ELSE 'BOY'
+END AS GENDER_name
+FROM
+emp
+
+
+SELECT ROUND(salary) FROM emp
+
+
+SELECT * FROM emp
+
+
+SELECT fname,salary,
+             (salary*.10) as percentage     
+
+
+
+SELECT * FROM emp
+
+SELECT * FROM CUSTOMERS
+
+SELECT * FROM ORDERS
+
+
+#join is used to comine the two or more tables based on related columns them 
+
+
+SELECT 
+
+
+SELECT * FROM customers c
+INNER JOIN 
+orders o
+ON c.cust_id=o.cust_id;
+
+
+SELECT c.cust_name, SUM(o.price) FROM 
+customers c
+      INNER JOIN 
+	  orders o
+ON c.cust_id=o.cust_id
+      GROUP BY cust_name
+
+SELECT * FROM customers
+
+SELECT * FROM orders
+
+
+SELECT * FROM customers c
+    LEFT JOIN
+	orders o
+ON c.cust_id=o.cust_id
+
+SELECT * FROM customers c
+    INNER JOIN
+	orders o 
+ON c.cust_id=o.cust_id
+
+
+CREATE TABLE students(
+    s_id SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL
+)
+
+CREATE TABLE entrollment(
+    enrollment_id SERIAL PRIMARY KEY,
+	s_id INT NOT NULL,
+	c_id INT NOT NULL,
+	enrollment_date DATE NOT NULL,
+	FOREIGN KEY (s_id) REFERENCES students(s_id),
+	FOREIGN KEY (C_id ) REFERENCES courses(c_id)
+);
+
+
+
+
+	 
+
+
+
+
+
