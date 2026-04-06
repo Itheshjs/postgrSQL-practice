@@ -1,0 +1,47 @@
+SELECT * FROM emp
+
+
+SELECT fname,salary,
+CASE
+   WHEN salary>=50000 THEN 'High'
+   ELSE 'Low'
+END AS sal_cat
+FROM emp
+
+
+
+SELECT * FROM emp
+
+
+
+SELECT fname,lname,
+CASE
+WHEN fname IN('Priya','Kavitha','Neha','Anjali') THEN 'Girl'
+ELSE 'BOY'
+END AS GENDER_name
+FROM
+emp
+
+
+SELECT ROUND(salary) FROM emp
+
+
+SELECT * FROM emp
+
+
+SELECT fname,salary,
+             (salary*.10) as percentage     
+
+
+
+SELECT * FROM emp
+
+SELECT * FROM CUSTOMERS
+
+SELECT * FROM ORDERS
+
+
+#join is used to comine the two or more tables based on related columns them 
+
+
+SELECT 
