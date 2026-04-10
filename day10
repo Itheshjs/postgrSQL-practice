@@ -1,0 +1,145 @@
+CREATE TABLE customers (
+    cust_id SERIAL PRIMARY KEY,
+    cust_name VARCHAR(100) NOT NULL
+);
+
+
+INSERT INTO customers (cust_name)
+VALUES
+    ('Raju'), ('Sham'), ('Paul'), ('Alex');
+
+
+
+SELECT * FROM customers
+
+
+CREATE TABLE orders (
+    ord_id SERIAL PRIMARY KEY,
+    ord_date DATE NOT NULL,
+    cust_id INTEGER NOT NULL,
+    FOREIGN KEY (cust_id) REFERENCES customers(cust_id)
+);
+
+INSERT INTO orders (ord_date, cust_id)
+VALUES
+    ('2024-01-01', 1),  -- Raju first order
+    ('2024-02-01', 2),  -- Sham first order
+    ('2024-03-01', 3),  -- Paul first order
+    ('2024-04-04', 2);  -- Sham second order
+
+	CREATE TABLE products (
+    p_id SERIAL PRIMARY KEY,
+    p_name VARCHAR(100) NOT NULL,
+    price NUMERIC NOT NULL
+);
+
+INSERT INTO products (p_name, price)
+VALUES
+    ('Laptop', 55000.00),
+    ('Mouse', 500),
+    ('Keyboard', 800.00),
+    ('Cable', 250.00)
+;
+
+CREATE TABLE order_items (
+    item_id SERIAL PRIMARY KEY,
+    ord_id INTEGER NOT NULL,
+    p_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    FOREIGN KEY (ord_id) REFERENCES orders(ord_id),
+    FOREIGN KEY (p_id) REFERENCES products(p_id)
+);
+
+INSERT INTO order_items (ord_id, p_id, quantity)
+VALUES
+    (1, 1, 1),  -- Raju ordered 1 Laptop
+    (1, 4, 2),  -- Raju ordered 2 Cables
+    (2, 1, 1),  -- Sham ordered 1 Laptop
+    (3, 2, 1),  -- Paul ordered 1 Mouse
+    (3, 4, 5),  -- Paul ordered 5 Cables
+    (4, 3, 1);  -- Sham ordered 1 Keyboard
+
+
+SELECT * FROM customers
+SELECT * FROM orders
+SELECT * FROM order_items
+SELECT * FROM products
+
+SELECT p.p_name,
+oi.quantity 
+FROM order_items oi
+     JOIN
+	    products p ON o.ord_id=p_id
+	 JOIN
+	    orders o ON
+
+
+SELECT * FROM billing_info
+
+
+SELECT p_name,SUM(total_price) FROM
+billing_info
+           GROUP BY(p_name)
+		   HAVING SUM(total_price)>1500;
+
+
+SELECT 
+COALESCE(p_name,'Total') 
+p_name,SUM(total_price) FROM
+billing_info
+           GROUP BY ROLLUP(p_name)
+		   ORDER BY SUM(total_price);
+
+SELECT * FROM billing_info
+
+
+CREATE OR REPLACE PROCEDURE update_emp_salary(
+p_employee_id INT,
+p_new_salary NUMERIC
+)
+
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE billing_info
+	SET salary=p_new_salary
+	WHERE emp_id =p_employee_id;
+END
+$$;
+
+
+CALL update_emp_salary(3,71000);
+
+
+SELECT * FROM billing_info
+
+
+CREATE TABLE employees(p_name,p_lname,p_email,p_dept,p_salary);
+CREATE OR REPLACE PROCEDURE add_employee(
+p_fname VARCHAR,
+p_lname VARCHAR,
+p_email VARCHAR,
+p_dept VARCHAR,
+p_salary NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO employee(fname,lname,email,dept,salary)
+	VALUES(p_fname,p_lname,p_email,p_dept,p_salary);
+END;
+$$;
+
+CALL add_employee('ramu','singh','ramu@123','HR',23000);
+
+CREATE TABLE employee (
+    fname VARCHAR,
+    lname VARCHAR,
+    email VARCHAR,
+    dept VARCHAR,
+    salary NUMERIC
+);
+
+SELECT * FROM employee
+
+CALL add_employee('Ithesh','js','Ithesh@2004','IT',25000);
